@@ -4,6 +4,11 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
+/**
+ * Clase TaskRequest que contiene las validaciones de la clase Task
+ *
+ * @author  Juan Lopez
+ */
 class TaskRequest extends FormRequest
 {
     public function authorize()

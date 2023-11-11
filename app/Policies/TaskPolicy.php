@@ -16,7 +16,7 @@ class TaskPolicy
     }
 
     /**
-     * Determinar si el usuario puede eliminas una tarea
+     * Determinar si el usuario puede eliminar una tarea
      */
     public function delete(User $user, Task $task): bool
     {

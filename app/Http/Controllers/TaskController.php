@@ -11,8 +11,20 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Gate;
 
+/**
+ * Clase TaskController que contiene los metodos de listado, creacion, actualizacion y eliminacion de una tarea
+ *
+ * @author  Juan Lopez
+ */
 class TaskController extends Controller
 {
+    /**
+     * Funcion que retorna el listado de todas las tareas creadas
+     *  
+     * @param Request $request
+     * 
+     * @author Juan Lopez
+     */
     public function index(Request $request)
     {
         $users = User::all();
@@ -28,12 +40,24 @@ class TaskController extends Controller
         return view('app.tasks.index', compact('tasks', 'users'));
     }
 
+    /**
+     * Funcion que retorna la vista de tareas junto con sus etiquetas
+     *  
+     * @author Juan Lopez
+     */
     public function create()
     {
         $tags = Tag::all();
         return view('app.tasks.create', compact('tags'));
     }
 
+    /**
+     * Funcion que realiza la creacion de las tareas
+     *  
+     * @param TaskRequest $request
+     * 
+     * @author Juan Lopez
+     */
     public function store(TaskRequest $request)
     {
         $request->validated();
@@ -51,6 +75,13 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Tarea creada correctamente.');
     }
 
+    /**
+     * Funcion que retorna la vista de edicion de una tarea junto con sus etiquetas
+     *  
+     * @param TaskRequest $request
+     * 
+     * @author Juan Lopez
+     */
     public function edit($id)
     {
         $task = Task::find($id);
@@ -61,6 +92,14 @@ class TaskController extends Controller
         return view('app.tasks.edit', compact('task', 'tags'));
     }
 
+    /**
+     * Funcion que realiza la actualizacion de las tareas
+     *  
+     * @param TaskRequest $request
+     * @param int $id
+     * 
+     * @author Juan Lopez
+     */
     public function update(TaskRequest $request, $id)
     {
         $request->validated();
@@ -79,6 +118,13 @@ class TaskController extends Controller
         return redirect()->route('tasks.index')->with('success', 'Tarea actualizada correctamente.');
     }
 
+    /**
+     * Funcion que realiza la eliminacion de las tareas
+     *  
+     * @param int $id
+     * 
+     * @author Juan Lopez
+     */
     public function destroy($id)
     {
         $task = Task::find($id);
